@@ -1,25 +1,24 @@
 package com.springboot.demo.controller;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.stereotype.Controller;
+import com.springboot.demo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author Leon
  */
-@Controller
-@EnableAutoConfiguration
+@RestController
 public class SampleController {
 
+    @Resource
+    private UserService userService;
+
     @RequestMapping("/")
-    @ResponseBody
     String home() {
-        return "Hello world!";
+        return userService.getName();
     }
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleController.class, args);
-    }
+
 }
